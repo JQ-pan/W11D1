@@ -82,7 +82,57 @@ function Form(props) {
             {showErrors()}
 
             <form className='form' onSubmit={handleSubmit}>
-                
+                <h2>Sign Up</h2>
+                <input 
+                    type="text" 
+                    placeholder='Name'
+                    value={user.name}
+                    onChange={handleChange('name')}
+                />
+                <input 
+                    type="text" 
+                    placeholder='Email'
+                    value={user.email}
+                    onChange={handleChange('email')}
+                />
+                <input 
+                    type="text" 
+                    placeholder='Phone Number'
+                    value={user.phoneNumber}
+                    onChange={handleChange('phoneNumber')}
+                />
+                <input 
+                    type="text" 
+                    placeholder='Phone Type'
+                    value={user.phoneType}
+                    onChange={handleChange('phoneType')}
+                />
+                <label >
+                    <input 
+                        type="radio" 
+                        value={user.staff}
+                        onChange={handleChange('staff')}
+                    /> Instructor
+                </label>
+                <label >
+                    <input 
+                        type="radio" 
+                        value={user.staff}
+                        onChange={handleChange('staff')}
+                    /> Student
+                </label>
+                <label>Bio
+                    <textarea value={user.bio} onChange={handleChange('bio')} />
+                </label>
+                <label>
+                    <input 
+                        type="checkbox" 
+                        placeholder='Sign Up'
+                        value={user.signUp}
+                        onChange={handleChange('signUp')}
+                    /> Sign Up For Email Notifications
+                </label>
+                <input type="submit" value="Submit" />
             </form>
         </div>
     )
