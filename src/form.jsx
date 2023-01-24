@@ -9,7 +9,8 @@ function Form(props) {
         phoneType: '',
         staff: '',
         bio: '',
-        signUp: ''
+        signUp: '',
+        date: new Date()
     })
 
     const [errors, setErrors] = useState([]);
@@ -48,10 +49,10 @@ function Form(props) {
         return errors;
     }
 
-    const handleChange =(field) => {
+    const handleChange = (field) => {
         return (e) => {
             console.log(e)
-            const newObj = Object.assign({}, user, {[field]: e.target.value})
+            const newObj = Object.assign({}, user, { [field]: e.target.value })
             setUser(newObj)
         }
     }
@@ -83,50 +84,63 @@ function Form(props) {
 
             <form className='form' onSubmit={handleSubmit}>
                 <h2>Sign Up</h2>
-                <input 
-                    type="text" 
+                <input
+                    type="text"
                     placeholder='Name'
                     value={user.name}
                     onChange={handleChange('name')}
                 />
-                <input 
-                    type="text" 
+
+                <input
+                    type="text"
                     placeholder='Email'
                     value={user.email}
                     onChange={handleChange('email')}
                 />
-                <input 
-                    type="text" 
+
+                <input
+                    type="text"
                     placeholder='Phone Number'
                     value={user.phoneNumber}
                     onChange={handleChange('phoneNumber')}
-                />
-                <input 
-                    type="text" 
-                    placeholder='Phone Type'
-                    value={user.phoneType}
-                    onChange={handleChange('phoneType')}
-                />
+                    />
+
+
+                    {if (user.phoneNumber.length > 0) {
+                    <label>Phone Type:
+                        <select value={user.phoneType} onChange={handleChange('phoneType')}>
+                            <option value="home">Home</option>
+                            <option value="work">Work</option>
+                            <option value="mobile">Mobile</option>
+                        </select>
+                    </label>
+                }}
+
+
                 <label >
-                    <input 
-                        type="radio" 
+                    <input
+                        name="staffType"
+                        type="radio"
                         value={user.staff}
                         onChange={handleChange('staff')}
                     /> Instructor
                 </label>
+
                 <label >
-                    <input 
-                        type="radio" 
+                    <input
+                        name="staffType"
+                        type="radio"
                         value={user.staff}
                         onChange={handleChange('staff')}
                     /> Student
                 </label>
+
                 <label>Bio
                     <textarea value={user.bio} onChange={handleChange('bio')} />
                 </label>
                 <label>
-                    <input 
-                        type="checkbox" 
+                    <input
+                        type="checkbox"
                         placeholder='Sign Up'
                         value={user.signUp}
                         onChange={handleChange('signUp')}
